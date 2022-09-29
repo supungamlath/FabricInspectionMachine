@@ -30,9 +30,9 @@ void setMotorsSpeed(int speed)
 void runMotors()
 {
     // Motors will run when this function is called continously
-    leftStepper.runSpeed();
-    middleStepper.runSpeed();
-    rightStepper.runSpeed();
+    leftStepper.run();
+    middleStepper.run();
+    rightStepper.run();
 }
 
 void stopMotors()
