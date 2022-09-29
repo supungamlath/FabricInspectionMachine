@@ -10,10 +10,14 @@ AccelStepper rightStepper(AccelStepper::DRIVER, stepPins[2], dirPins[2]);
 
 void initializeMotors()
 {
-    // Sets the pins as Outputs
-    leftStepper.setMaxSpeed(1024);
-    middleStepper.setMaxSpeed(1024);
-    rightStepper.setMaxSpeed(1024);
+    // Set the max speed to match the max reading from ADC
+    leftStepper.setMaxSpeed(1023);
+    // Set max acceleration same as Accelstepper example
+    leftStepper.setAcceleration(100);
+    middleStepper.setMaxSpeed(1023);
+    middleStepper.setAcceleration(100);
+    rightStepper.setMaxSpeed(1023);
+    rightStepper.setAcceleration(100);
 }
 
 void setMotorsSpeed(int speed)
@@ -25,6 +29,7 @@ void setMotorsSpeed(int speed)
 
 void runMotors()
 {
+    // Motors will run when this function is called continously
     leftStepper.runSpeed();
     middleStepper.runSpeed();
     rightStepper.runSpeed();
