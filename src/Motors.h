@@ -1,6 +1,6 @@
 #pragma once
 
 void initializeMotors();
-void setMotorsSpeed(int speed);
-void runMotors();
+void runMotors(int speed);
 void stopMotors();
+void setMotorsDirection(RotationDirection direction);

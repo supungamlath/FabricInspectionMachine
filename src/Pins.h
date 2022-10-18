@@ -1,18 +1,21 @@
 #pragma once
-
 #include <Arduino.h>
 
-// Motor Constants
-const int stepPins[] = {2, 4, 3}; // X.STEP
-const int dirPins[] = {5, 7, 6};  // X.DIR
+// Motor Pins
+const int stepPins[] = {2, 3, 4};
+const int dirPins[] = {5, 6, 7};
 
-// Joystick Constants
+// Joystick Pins
 const int joystickXPin = A0;
 const int joystickYPin = A1;
 
-// Switch Constants
+// Switch Pins
 const int switchLeftPin = 12;
 const int switchRightPin = 13;
 
-// Speed Controller Constants
+// Speed Controller Pins
 const int speedControllerPin = A3;
+
+// Rotary Encoder Pins
+const int encoderDTPin = 51;  // DATA signal
+const int encoderCLKPin = 50; // CLOCK signal
