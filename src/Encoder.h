@@ -1,3 +1,3 @@
 void initializeEncoder();
-void checkRotaryWithDebouncing();
-void checkRotary();
+int getEncoderReading();
+void resetEncoderReading();

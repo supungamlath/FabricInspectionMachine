@@ -1,0 +1,2 @@
+void initializeBluetooth();
+void checkBT();

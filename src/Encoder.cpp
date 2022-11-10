@@ -9,7 +9,7 @@ unsigned long DelayofDebounce = 1;
 int PreviousCLK;
 int PreviousDATA;
 
-int displaycounter = 0; // Store current counter value
+int posCounter = 0; // Store current counter value
 
 void initializeEncoder()
 {
@@ -27,13 +27,13 @@ void checkRotary()
     {
         if ((digitalRead(encoderCLKPin) == 1) && (digitalRead(encoderDTPin) == 0))
         {
-            displaycounter++;
-            Serial.println(displaycounter);
+            posCounter++;
+            Serial.println(posCounter);
         }
         if ((digitalRead(encoderCLKPin) == 1) && (digitalRead(encoderDTPin) == 1))
         {
-            displaycounter--;
-            Serial.println(displaycounter);
+            posCounter--;
+            Serial.println(posCounter);
         }
     }
 
@@ -41,13 +41,13 @@ void checkRotary()
     {
         if ((digitalRead(encoderCLKPin) == 0) && (digitalRead(encoderDTPin) == 1))
         {
-            displaycounter++;
-            Serial.println(displaycounter);
+            posCounter++;
+            Serial.println(posCounter);
         }
         if ((digitalRead(encoderCLKPin) == 0) && (digitalRead(encoderDTPin) == 0))
         {
-            displaycounter--;
-            Serial.println(displaycounter);
+            posCounter--;
+            Serial.println(posCounter);
         }
     }
 
@@ -55,13 +55,13 @@ void checkRotary()
     {
         if ((digitalRead(encoderCLKPin) == 0) && (digitalRead(encoderDTPin) == 1))
         {
-            displaycounter++;
-            Serial.println(displaycounter);
+            posCounter++;
+            Serial.println(posCounter);
         }
         if ((digitalRead(encoderCLKPin) == 0) && (digitalRead(encoderDTPin) == 0))
         {
-            displaycounter--;
-            Serial.println(displaycounter);
+            posCounter--;
+            Serial.println(posCounter);
         }
     }
 
@@ -69,13 +69,13 @@ void checkRotary()
     {
         if ((digitalRead(encoderCLKPin) == 1) && (digitalRead(encoderDTPin) == 0))
         {
-            displaycounter++;
-            Serial.println(displaycounter);
+            posCounter++;
+            Serial.println(posCounter);
         }
         if ((digitalRead(encoderCLKPin) == 1) && (digitalRead(encoderDTPin) == 1))
         {
-            displaycounter--;
-            Serial.println(displaycounter);
+            posCounter--;
+            Serial.println(posCounter);
         }
     }
 }
@@ -92,4 +92,15 @@ void checkRotaryWithDebouncing()
 
         TimeOfLastDebounce = millis(); // Set variable to current millis() timer
     }
+}
+
+int getEncoderReading()
+{
+    checkRotaryWithDebouncing();
+    return posCounter;
+}
+
+void resetEncoderReading()
+{
+    posCounter = 0;
 }

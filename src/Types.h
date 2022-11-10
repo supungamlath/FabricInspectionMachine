@@ -13,3 +13,9 @@ enum RotationDirection
     FORWARD = HIGH,
     BACKWARD = LOW
 };
+
+enum BluetoothData
+{
+    SPEED = 'c',
+    DIRECTION = 'd'
+};

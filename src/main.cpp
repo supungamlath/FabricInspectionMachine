@@ -7,6 +7,7 @@
 #include <SpeedController.h>
 #include <Encoder.h>
 #include <Switch.h>
+#include <Bluetooth.h>
 
 void setup()
 {
@@ -14,34 +15,37 @@ void setup()
   initializeJoystick();
   initializeSwitch();
   initializeSpeedController();
+  initializeBluetooth();
   // Serial.begin(115200);
 }
 
 void loop()
 {
-  // checkRotaryWithDebouncing();
-  ControllerPosition joystickPosition = getJoystickXPosition();
-  ControllerPosition switchPosition = getSwitchPosition();
+  int encoderReading = getEncoderReading();
+  // ControllerPosition joystickPosition = getJoystickXPosition();
+  // ControllerPosition switchPosition = getSwitchPosition();
   // Value from 0 to 1023
-  int speed = getSpeedControllerReading();
+  // int speed = getSpeedControllerReading();
 
   // Serial.print("Speed ");
   // Serial.print(speed);
   // Serial.print(" Joystick ");
   // Serial.println(joystickPosition);
 
-  if (joystickPosition == LEFT || switchPosition == LEFT)
-  {
-    setMotorsDirection(BACKWARD);
-    runMotors(speed);
-  }
-  else if (joystickPosition == RIGHT || switchPosition == RIGHT)
-  {
-    setMotorsDirection(FORWARD);
-    runMotors(speed);
-  }
-  else
-  {
-    stopMotors();
-  }
+  // if (joystickPosition == LEFT || switchPosition == LEFT)
+  // {
+  //   setMotorsDirection(BACKWARD);
+  //   runMotors(speed);
+  // }
+  // else if (joystickPosition == RIGHT || switchPosition == RIGHT)
+  // {
+  //   setMotorsDirection(FORWARD);
+  //   runMotors(speed);
+  // }
+  // else
+  // {
+  //   stopMotors();
+  // }
+
+  // checkBT();
 }
