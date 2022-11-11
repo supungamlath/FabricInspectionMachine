@@ -1,2 +1,7 @@
+struct bluetoothData
+{
+    int speed, direction, position;
+};
+
 void initializeBluetooth();
-void checkBT();
+bluetoothData getBluetoothData();

@@ -15,29 +15,29 @@ void readWriteBluetooth(int new_speed, RotationDirection new_dir)
     char str_speed[3];
     char str_direction[1];
     unsigned int cur = 0;
-    BluetoothData type;
+    BluetoothPacket type;
 
     while (Serial1.available())
     {
         char c = Serial1.read();
-        if (c == BluetoothData::SPEED)
+        if (c == BluetoothPacket::SPEED)
         {
-            type = BluetoothData::SPEED;
+            type = BluetoothPacket::SPEED;
             cur = 0;
         }
-        else if (c == BluetoothData::DIRECTION)
+        else if (c == BluetoothPacket::DIRECTION)
         {
-            type = BluetoothData::DIRECTION;
+            type = BluetoothPacket::DIRECTION;
             cur = 0;
         }
         else
         {
-            if (type == BluetoothData::SPEED)
+            if (type == BluetoothPacket::SPEED)
             {
                 str_speed[cur] = c;
                 c++;
             }
-            else if (type == BluetoothData::DIRECTION)
+            else if (type == BluetoothPacket::DIRECTION)
             {
                 str_direction[cur] = c;
                 c++;
@@ -51,12 +51,51 @@ void readWriteBluetooth(int new_speed, RotationDirection new_dir)
     sprintf(out_buffer, "s%id%c", new_speed, new_dir);
     Serial1.write(out_buffer);
 }
-int getRemoteSpeed()
-{
-    return speed;
-}
 
-RotationDirection getRemoteDirection()
+void readBluetooth()
 {
-    return dir;
+    int speed;
+    int direction;
+    int position;
+
+    unsigned int cur = 0;
+    char buffer[50];
+
+    while (Serial1.available())
+    {
+        char c = Serial1.read();
+        if (c == BluetoothPacket::START)
+        { // Start of packet, set cursor to zero and clear buffer
+            cur = 0;
+            buffer[0] = '\0';
+        }
+        else if (c == BluetoothPacket::SPEED)
+        {
+            buffer[cur] = '\0';
+            cur = 0;
+            speed = atoi(buffer);
+        }
+        else if (c == BluetoothPacket::DIRECTION)
+        {
+            buffer[cur] = '\0';
+            cur = 0;
+            direction = atoi(buffer);
+        }
+        else if (c == BluetoothPacket::POSITION)
+        {
+            buffer[cur] = '\0';
+            cur = 0;
+            position = atoi(buffer);
+        }
+        else if (c == BluetoothPacket::END)
+        {
+            buffer[cur] = '\0';
+            cur = 0;
+        }
+        else
+        {
+            buffer[cur] = c;
+            cur++;
+        }
+    }
 }

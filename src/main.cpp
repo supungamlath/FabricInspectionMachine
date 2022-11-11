@@ -21,10 +21,9 @@ void setup()
 
 void loop()
 {
-  int encoderReading = getEncoderReading();
   // ControllerPosition joystickPosition = getJoystickXPosition();
   // ControllerPosition switchPosition = getSwitchPosition();
-  // Value from 0 to 1023
+  // // Value from 0 to 1023
   // int speed = getSpeedControllerReading();
 
   // Serial.print("Speed ");
@@ -47,5 +46,15 @@ void loop()
   //   stopMotors();
   // }
 
-  // checkBT();
+  int position = getSpeedControllerReading();
+  int encoderReading = getEncoderReading();
+
+  while (encoderReading < position)
+  {
+    setMotorsDirection(FORWARD);
+    runMotors(1023);
+    encoderReading = getEncoderReading();
+  }
+  stopMotors();
+  resetEncoderReading();
 }

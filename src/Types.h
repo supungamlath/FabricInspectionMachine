@@ -14,8 +14,11 @@ enum RotationDirection
     BACKWARD = LOW
 };
 
-enum BluetoothData
+enum BluetoothPacket
 {
+    START = 's',
     SPEED = 'c',
-    DIRECTION = 'd'
+    DIRECTION = 'd',
+    POSITION = 'p',
+    END = 'e'
 };
