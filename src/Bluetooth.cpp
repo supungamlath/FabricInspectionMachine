@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include <Types.h>
+#include <Bluetooth.h>
 
-int speed = 0;
-RotationDirection dir = FORWARD;
+BluetoothData bluetoothData;
 
 void initializeBluetooth()
 {
@@ -23,12 +23,8 @@ void writeBluetooth(int new_speed, RotationDirection new_dir)
 }
 
 // Read speed, direction and position from app via bluetooth
-void readBluetooth()
+BluetoothData readBluetooth()
 {
-    int speed;
-    int direction;
-    int position;
-
     unsigned int cur = 0;
     char buffer[50];
 
@@ -44,19 +40,19 @@ void readBluetooth()
         {
             buffer[cur] = '\0';
             cur = 0;
-            speed = atoi(buffer);
+            bluetoothData.speed = atoi(buffer);
         }
         else if (c == BluetoothPacket::DIRECTION)
         {
             buffer[cur] = '\0';
             cur = 0;
-            direction = atoi(buffer);
+            bluetoothData.direction = atoi(buffer);
         }
         else if (c == BluetoothPacket::POSITION)
         {
             buffer[cur] = '\0';
             cur = 0;
-            position = atoi(buffer);
+            bluetoothData.position = atoi(buffer);
         }
         else if (c == BluetoothPacket::END)
         {
