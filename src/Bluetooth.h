@@ -1,6 +1,7 @@
 struct BluetoothData
 {
-    int speed, direction, position;
+    int speed, position;
+    RotationDirection direction;
 };
 
 void initializeBluetooth();

@@ -48,11 +48,12 @@ void loop()
 
   int position = getSpeedControllerReading();
   int encoderReading = getEncoderReading();
+  BluetoothData bluetoothData = readBluetooth();
 
   while (encoderReading < position)
   {
-    setMotorsDirection(FORWARD);
-    runMotors(1023);
+    setMotorsDirection(bluetoothData.direction);
+    runMotors(bluetoothData.speed);
     encoderReading = getEncoderReading();
   }
   stopMotors();

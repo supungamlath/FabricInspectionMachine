@@ -46,7 +46,7 @@ BluetoothData readBluetooth()
         {
             buffer[cur] = '\0';
             cur = 0;
-            bluetoothData.direction = atoi(buffer);
+            bluetoothData.direction = (RotationDirection)atoi(buffer);
         }
         else if (c == BluetoothPacket::POSITION)
         {
@@ -65,4 +65,5 @@ BluetoothData readBluetooth()
             cur++;
         }
     }
+    return bluetoothData;
 }
