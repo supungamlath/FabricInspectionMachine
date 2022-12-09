@@ -7,6 +7,7 @@
 #include <SpeedController.h>
 #include <Encoder.h>
 #include <Switch.h>
+#include <Wire.h>
 
 void setup()
 {
@@ -14,42 +15,12 @@ void setup()
   initializeJoystick();
   initializeSwitch();
   initializeSpeedController();
-<<<<<<< Updated upstream
-  // Serial.begin(115200);
-=======
-  initializeBluetooth();
+  // initializeBluetooth();
   Serial.begin(115200);
->>>>>>> Stashed changes
 }
 
 void loop()
 {
-<<<<<<< Updated upstream
-  // checkRotaryWithDebouncing();
-  ControllerPosition joystickPosition = getJoystickXPosition();
-  ControllerPosition switchPosition = getSwitchPosition();
-  // Value from 0 to 1023
-  int speed = getSpeedControllerReading();
-
-  // Serial.print("Speed ");
-  // Serial.print(speed);
-  // Serial.print(" Joystick ");
-  // Serial.println(joystickPosition);
-
-  if (joystickPosition == LEFT || switchPosition == LEFT)
-  {
-    setMotorsDirection(BACKWARD);
-    runMotors(speed);
-  }
-  else if (joystickPosition == RIGHT || switchPosition == RIGHT)
-  {
-    setMotorsDirection(FORWARD);
-    runMotors(speed);
-  }
-  else
-  {
-    stopMotors();
-=======
   ControllerPosition switchPosition = getSwitchPosition();
   // // Value from 0 to 1023
   if (switchPosition == MIDDLE)
@@ -61,12 +32,12 @@ void loop()
     if (joystickPosition == LEFT)
     {
       setMotorsDirection(FORWARD);
-      runMotors(400);
+      setMotorSpeed(400);
     }
     else if (joystickPosition == RIGHT)
     {
       setMotorsDirection(BACKWARD);
-      runMotors(400);
+      setMotorSpeed(400);
     }
     stopMotors();
   }
@@ -74,17 +45,17 @@ void loop()
   {
     int speed = getSpeedControllerReading();
     Serial.print("Speed ");
-    Serial.print(speed);
+    Serial.println(speed);
     if (switchPosition == LEFT)
     {
       setMotorsDirection(BACKWARD);
-      runMotors(speed);
+      setMotorSpeed(speed);
     }
     else if (switchPosition == RIGHT)
     {
       setMotorsDirection(FORWARD);
-      runMotors(speed);
+      setMotorSpeed(speed);
     }
->>>>>>> Stashed changes
   }
+  sendMotorCommands();
 }

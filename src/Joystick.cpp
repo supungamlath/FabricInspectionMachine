@@ -3,8 +3,8 @@
 #include <Pins.h>
 
 const int joystickMiddleReading = 512;
-int joystickUpperReading = joystickMiddleReading + 20;
-int joystickLowerReading = joystickMiddleReading - 20;
+int joystickUpperReading = joystickMiddleReading + 120;
+int joystickLowerReading = joystickMiddleReading - 120;
 
 void initializeJoystick()
 {
