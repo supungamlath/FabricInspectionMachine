@@ -32,14 +32,17 @@ void loop()
     if (joystickPosition == LEFT)
     {
       setMotorsDirection(FORWARD);
-      setMotorSpeed(400);
+      setMotorSpeed(100);
     }
     else if (joystickPosition == RIGHT)
     {
       setMotorsDirection(BACKWARD);
-      setMotorSpeed(400);
+      setMotorSpeed(100);
     }
-    stopMotors();
+    else
+    {
+      stopMotors();
+    }
   }
   else
   {
