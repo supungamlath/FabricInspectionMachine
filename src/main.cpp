@@ -28,7 +28,6 @@ void loop()
     ControllerPosition joystickPosition = getJoystickXPosition();
     Serial.print(" Joystick ");
     Serial.println(joystickPosition);
-    // int encoderReading = getEncoderReading();
     if (joystickPosition == LEFT)
     {
       setMotorsDirection(FORWARD);
