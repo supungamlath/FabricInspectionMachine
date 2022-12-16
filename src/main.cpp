@@ -5,7 +5,7 @@
 #include <MotorsTX.h>
 #include <Joystick.h>
 #include <SpeedController.h>
-#include <Encoder.h>
+#include <SpeedMeters.h>
 #include <Switch.h>
 #include <Wire.h>
 
@@ -15,6 +15,7 @@ void setup()
   initializeJoystick();
   initializeSwitch();
   initializeSpeedController();
+  initializeSpeedMeters();
   // initializeBluetooth();
   Serial.begin(115200);
 }
@@ -26,8 +27,8 @@ void loop()
   if (switchPosition == MIDDLE)
   {
     ControllerPosition joystickPosition = getJoystickXPosition();
-    Serial.print(" Joystick ");
-    Serial.println(joystickPosition);
+    // Serial.print(" Joystick ");
+    // Serial.println(joystickPosition);
     if (joystickPosition == LEFT)
     {
       setMotorsDirection(FORWARD);
@@ -46,8 +47,8 @@ void loop()
   else
   {
     int speed = getSpeedControllerReading();
-    Serial.print("Speed ");
-    Serial.println(speed);
+    // Serial.print("Speed ");
+    // Serial.println(speed);
     if (switchPosition == LEFT)
     {
       setMotorsDirection(BACKWARD);
@@ -60,4 +61,5 @@ void loop()
     }
   }
   sendMotorCommands();
+  checkReadings();
 }

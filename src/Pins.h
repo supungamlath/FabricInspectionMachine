@@ -13,5 +13,9 @@ const int switchRightPin = 9;
 const int speedControllerPin = A2;
 
 // Rotary Encoder Pins
-const int encoderDTPin = 51;  // DATA signal
-const int encoderCLKPin = 50; // CLOCK signal
+const int leftEncoderDTPin = 21;
+const int leftEncoderCLKPin = 20;
+const int middleEncoderDTPin = 3;
+const int middleEncoderCLKPin = 5;
+const int rightEncoderDTPin = 2;
+const int rightEncoderCLKPin = 4;
